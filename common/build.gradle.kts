@@ -20,11 +20,6 @@ kotlin {
             dependencies {
                 implementation(libs.serialization.json)
                 implementation(libs.kotlinx.coroutines.core)
-
-                compileOnly(compose.runtime)
-                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
-                compileOnly(compose.components.resources)
-                compileOnly(compose.foundation)
             }
             resources.srcDirs("resources")
         }

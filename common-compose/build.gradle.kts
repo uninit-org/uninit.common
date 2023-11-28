@@ -86,9 +86,9 @@ publishing {
 
     }
     publications {
-        create<MavenPublication>("uninit.common.compose") {
+        create<MavenPublication>("uninit.common-compose") {
             groupId = "uninit"
-            artifactId = "common.compose"
+            artifactId = "common-compose"
             version = versionStr
         }
     }

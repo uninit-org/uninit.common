@@ -66,37 +66,31 @@ android {
 }
 
 publishing {
-    var version = project.version.toString()
-    val ci = System.getenv("CI") != null
+    var versionStr = project.version.toString()
+    val ci = System.getenv("CI") != null && System.getenv("GITHUB_EVENT_NAME") != "release"
+    var repo = "releases"
     if (ci) {
         val commitHash = System.getenv("GITHUB_SHA").slice(0..6)
-        version += "-#$commitHash"
+        versionStr += "-#$commitHash"
+        repo = "snapshots"
     }
     repositories {
-        if (ci) {
-            maven {
-                name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/uninit/uninit.common")
-                credentials {
-                    username = System.getenv("GITHUB_ACTOR")
-                    password = System.getenv("GITHUB_TOKEN")
-                }
+        maven {
+            name = "uninit"
+            url = uri("https://repo.uninit.dev/$repo")
+            credentials {
+                username = "admin"
+                password = System.getenv("REPOSILITE_PASSWORD")
             }
         }
 
-        // maven {
-        //     name = "uninit Reposilite"
-        //     url = uri("https://repo.uninit.dev/repository/maven-public/")
-        //     credentials {
-        //         username = "common"
-        //         password = project.findProperty("reposilite.password") ?: System.getenv("REPOSILITE_PASSWORD")
-        //     }
-        // } 
-        // TODO: Soon™
-        
     }
     publications {
-        
+        create<MavenPublication>("uninit.common.compose") {
+            groupId = "uninit"
+            artifactId = "common.compose"
+            version = versionStr
+        }
     }
 
 }

@@ -4,10 +4,7 @@ name: Publish
 jobs:
   publish:
     name: Publish
-    strategy:
-      matrix:
-        os: [ ubuntu-latest, macos-latest, windows-latest ]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
@@ -21,16 +18,15 @@ jobs:
         uses: actions/cache@v3
         with:
           path: common
-          key: ${{ runner.os }}-common-${{ hashFiles('common/**', 'build.gradle.kts', 'gradle.properties', 'gradle/libs.versions.toml') }}
+          key: common-${{ hashFiles('common/**', 'build.gradle.kts', 'gradle.properties', 'gradle/libs.versions.toml') }}
 
       - name: Cache Common-Compose
         uses: actions/cache@v3
         with:
           path: common-compose
-          key: ${{ runner.os }}-common-compose-${{ hashFiles('common-compose/**', 'build.gradle.kts', 'gradle.properties', 'gradle/libs.versions.toml') }}
+          key: common-compose-${{ hashFiles('common-compose/**', 'build.gradle.kts', 'gradle.properties', 'gradle/libs.versions.toml') }}
 
       - name: Setup Android SDK
-        if: matrix.os == 'ubuntu-latest'
         uses: android-actions/setup-android@v3
 
       - name: Publish
@@ -38,15 +34,3 @@ jobs:
           ./gradlew --no-daemon publish
         env:
           REPOSILITE_PASSWORD: ${{ secrets.REPOSILITE_PASSWORD }}
-
-
-      - name: Clean up windows
-        if: matrix.os == 'windows-latest'
-        run: |
-          Remove-Item -Path appDesktop/build/compose/binaries -Recurse -Force
-
-      - name: Clean up linux
-        if: matrix.os == 'ubuntu-latest'
-        run: |
-          rm -rf appDesktop/build/compose/binaries
-          rm -rf appAndroid/build/outputs

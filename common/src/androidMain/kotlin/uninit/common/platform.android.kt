@@ -1,3 +1,13 @@
 package uninit.common
 
-actual fun getSystemMillis(): Long = System.currentTimeMillis()
+import uninit.common.platform.OsFamily
+
+actual object Platform {
+    actual val osFamily: OsFamily
+        get() = OsFamily.ANDROID
+
+    actual fun vibrate(iosIntensity: Float, iosSharpness: Float, androidTime: Int) {
+        // TODO: This is a stub. Implement this method.
+    }
+
+}

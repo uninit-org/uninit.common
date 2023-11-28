@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="common-compose-desktop-0.1.0">
+    <output-path>$PROJECT_DIR$/build/common-compose/libs</output-path>
+    <root id="archive" name="common-compose-desktop-0.1.0.jar">
+      <element id="module-output" name="uninit-common.common-compose.desktopMain" />
+    </root>
+  </artifact>
+</component>

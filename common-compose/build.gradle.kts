@@ -25,7 +25,13 @@ kotlin {
                 compileOnly(compose.components.resources)
                 compileOnly(compose.foundation)
 
-                project(":common")
+                compileOnly(libs.ktor.client.core)
+                compileOnly(libs.ktor.client.negotiation)
+
+                compileOnly(libs.koin.core)
+                compileOnly(libs.koin.compose)
+
+                implementation(project(":common"))
             }
             resources.srcDirs("resources")
         }
@@ -35,13 +41,6 @@ kotlin {
             dependencies {
                 implementation(libs.jvm.gson)
             }
-        }
-
-        
-        val iosArm64Main by getting {}
-        val iosMain by creating {
-            dependsOn(commonMain)
-            iosArm64Main.dependsOn(this)
         }
     }
 }

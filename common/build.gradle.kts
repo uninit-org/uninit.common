@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlinx.serialization)
     `maven-publish`
 }
@@ -19,8 +20,19 @@ kotlin {
             dependencies {
                 implementation(libs.serialization.json)
                 implementation(libs.kotlinx.coroutines.core)
+
+                compileOnly(compose.runtime)
+                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+                compileOnly(compose.components.resources)
+                compileOnly(compose.foundation)
             }
             resources.srcDirs("resources")
+        }
+
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+            }
         }
 
         val androidMain by getting {}
@@ -28,13 +40,6 @@ kotlin {
             dependencies {
                 implementation(libs.jvm.gson)
             }
-        }
-
-        
-        val iosArm64Main by getting {}
-        val iosMain by creating {
-            dependsOn(commonMain)
-            iosArm64Main.dependsOn(this)
         }
     }
 }

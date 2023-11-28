@@ -74,10 +74,11 @@ publishing {
         versionStr += "-#$commitHash"
         repo = "snapshots"
     }
+    val a = System.getenv("GITHUB_EVENT_NAME")
     repositories {
         maven {
             name = "uninit"
-            url = uri("https://repo.uninit.dev/$repo")
+            url = uri("https://repo.uninit.dev/$repo$a")
             credentials {
                 username = "admin"
                 password = System.getenv("REPOSILITE_PASSWORD")

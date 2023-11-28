@@ -3,6 +3,7 @@ package uninit.common.preferences
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializer
+import platform.Foundation.NSUserDefaults
 import kotlin.reflect.KClass
 
 /**

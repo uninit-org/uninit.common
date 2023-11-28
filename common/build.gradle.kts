@@ -60,7 +60,7 @@ android {
 
 publishing {
     var versionStr = project.version.toString()
-    val ci = System.getenv("CI") != null && System.getenv("GITHUB_EVENT_NAME") != "release"
+    val ci = System.getenv("CI") != null && System.getenv("EventName") != "release"
     var repo = "releases"
     if (ci) {
         val commitHash = System.getenv("GITHUB_SHA").slice(0..6)

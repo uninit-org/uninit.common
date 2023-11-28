@@ -67,18 +67,17 @@ android {
 
 publishing {
     var versionStr = project.version.toString()
-    val ci = System.getenv("CI") != null && System.getenv("GITHUB_EVENT_NAME") != "released"
+    val ci = System.getenv("CI") != null && System.getenv("EventName") != "release"
     var repo = "releases"
     if (ci) {
         val commitHash = System.getenv("GITHUB_SHA").slice(0..6)
         versionStr += "-#$commitHash"
         repo = "snapshots"
     }
-    val a = System.getenv("GITHUB_EVENT_NAME")
     repositories {
         maven {
             name = "uninit"
-            url = uri("https://repo.uninit.dev/$repo$a")
+            url = uri("https://repo.uninit.dev/$repo")
             credentials {
                 username = "admin"
                 password = System.getenv("REPOSILITE_PASSWORD")

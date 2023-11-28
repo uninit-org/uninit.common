@@ -1,4 +1,4 @@
-package uninit.common.preferences
+package uninit.common.compose.preferences
 
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.json.Json

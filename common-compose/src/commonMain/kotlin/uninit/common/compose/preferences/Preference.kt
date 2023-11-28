@@ -1,4 +1,4 @@
-package uninit.common.preferences
+package uninit.common.compose.preferences
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf

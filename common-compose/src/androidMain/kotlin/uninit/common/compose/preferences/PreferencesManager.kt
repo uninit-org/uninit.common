@@ -1,6 +1,8 @@
-package uninit.common.preferences
+package uninit.common.compose.preferences
 
 import android.content.SharedPreferences
+import uninit.common.compose.preferences.Preference
+import uninit.common.compose.preferences.PreferenceApi
 
 @Suppress("NAME_SHADOWING")
 actual class PreferencesManager(val prefs: SharedPreferences) : PreferenceApi() {

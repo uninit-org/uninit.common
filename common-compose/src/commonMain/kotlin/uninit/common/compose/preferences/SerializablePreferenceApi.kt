@@ -1,4 +1,4 @@
-package uninit.common.preferences
+package uninit.common.compose.preferences
 
 import kotlin.reflect.KClass
 

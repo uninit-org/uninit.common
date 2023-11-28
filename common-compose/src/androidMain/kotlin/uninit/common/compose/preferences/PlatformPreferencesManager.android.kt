@@ -1,9 +1,11 @@
-package uninit.common.preferences
+package uninit.common.compose.preferences
 
 import android.content.SharedPreferences
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializer
+import uninit.common.compose.preferences.Preference
+import uninit.common.compose.preferences.SerializablePreferenceApi
 import kotlin.reflect.KClass
 
 /**

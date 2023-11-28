@@ -1,5 +1,7 @@
 on:
   push:
+  release:
+    types: [ created ]
 name: Publish
 jobs:
   publish:
@@ -34,4 +36,3 @@ jobs:
           ./gradlew --no-daemon publish
         env:
           REPOSILITE_PASSWORD: ${{ secrets.REPOSILITE_PASSWORD }}
-          EventName: ${{ github.event_name }}

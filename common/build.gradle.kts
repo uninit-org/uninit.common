@@ -8,7 +8,9 @@ plugins {
 
 kotlin {
 
-    androidTarget()
+    android {
+        publishLibraryVariants("release")
+    }
     jvm("desktop")
     iosArm64().binaries.framework {
         baseName = "uninitCommon"

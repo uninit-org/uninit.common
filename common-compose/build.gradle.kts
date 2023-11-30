@@ -7,7 +7,7 @@ plugins {
 }
 
 kotlin {
-    android {
+    androidTarget {
         publishLibraryVariants("release")
     }
     jvm("desktop")
@@ -23,7 +23,6 @@ kotlin {
 
                 compileOnly(compose.runtime)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
-                compileOnly(compose.components.resources)
                 compileOnly(compose.foundation)
 
                 compileOnly(libs.ktor.client.core)

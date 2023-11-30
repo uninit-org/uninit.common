@@ -1,5 +1,6 @@
 import java.text.SimpleDateFormat
 import java.util.*
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
@@ -20,7 +21,14 @@ buildscript {
     }
 }
 
+
 allprojects {
+    tasks.withType(KotlinCompile::class).all {
+        kotlinOptions {
+            freeCompilerArgs += "-Xexpect-actual-classes"
+        }
+    }
+
     group = "uninit"
     extra["root-maven-url"] = "https://repo.uninit.dev/"
     val ci = System.getenv("CI") != null

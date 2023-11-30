@@ -55,7 +55,7 @@ allprojects {
         repositories {
             maven {
                 name = "uninit"
-                url = uri("${extra["root-maven-url"]}${if (ci) "snapshots" else "releases"}")
+                url = uri("${extra["root-maven-url"]}${if (!isRelease) "snapshots" else "releases"}")
                 credentials {
                     username = "admin"
                     password = System.getenv("REPOSILITE_PASSWORD")

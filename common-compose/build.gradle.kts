@@ -28,8 +28,9 @@ kotlin {
                 compileOnly(libs.ktor.client.core)
                 compileOnly(libs.ktor.client.negotiation)
 
-                compileOnly(libs.koin.core)
-                compileOnly(libs.koin.compose)
+                // These have to be implementation or else gradle will pitch a fit
+                implementation(libs.koin.core)
+                implementation(libs.koin.compose)
 
                 implementation(project(":common"))
 
